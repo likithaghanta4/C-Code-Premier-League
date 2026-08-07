@@ -1,0 +1,10 @@
+/* ============================================
+   App-level styles
+   Minimal — most styling is via Tailwind utilities
+   ============================================ */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

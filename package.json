@@ -1,0 +1,25 @@
+{
+  "name": "cpl-c-code-premier-league",
+  "version": "1.0.0",
+  "description": "C Code Premier League — Complete C Programming Learning Platform",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n CLIENT,SERVER -c cyan,green \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "cd client && npm install && cd ../server && npm install"
+  },
+  "keywords": [
+    "cpl",
+    "c-programming",
+    "learning-platform",
+    "edtech"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^10.0.4"
+  }
+}
