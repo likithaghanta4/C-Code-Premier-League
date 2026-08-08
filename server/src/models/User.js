@@ -69,7 +69,7 @@ const userSchema = new mongoose.Schema(
       enum: ['student', 'admin', 'instructor'],
       default: 'student',
     },
-    
+
     // Future-ready Gamification & Progress Fields
     xp: {
       type: Number,
@@ -123,7 +123,7 @@ const userSchema = new mongoose.Schema(
         courseId: { type: String, required: true },
         type: { type: String, enum: ['learn', 'practice', 'course'], required: true },
         title: { type: String, required: true },
-        certificateId: { type: String, required: true, unique: true },
+        certificateId: { type: String, required: true, unique: true, sparse: true, index: true },
         issueDate: { type: Date, default: Date.now },
       }
     ],
