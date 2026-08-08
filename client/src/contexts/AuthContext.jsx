@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const checkAuth = async () => {
       const storedToken = localStorage.getItem(TOKEN_KEY);
-      
+
       if (!storedToken) {
         setLoading(false);
         return;
@@ -60,7 +60,7 @@ export function AuthProvider({ children }) {
     setError(null);
     try {
       const data = await authService.login(credentials);
-      
+
       if (data.success) {
         setToken(data.token);
         setUser(data.user);
@@ -87,13 +87,13 @@ export function AuthProvider({ children }) {
     setError(null);
     try {
       const data = await authService.register(userData);
-      
+
       if (data.success) {
         toast.success(data.message || 'Registration successful! Please log in.');
         return true;
       }
     } catch (err) {
-      const message = err.response?.data?.message || 'Registration failed. Please try again.';
+      const message = err.response?.data?.error || err.response?.data?.message || 'Registration failed. Please try again.';
       setError(message);
       toast.error(message);
       return false;
@@ -137,7 +137,7 @@ export function AuthProvider({ children }) {
       // Import inline to avoid circular deps if they exist, or just rely on global service import
       const { userService } = await import('../services/user.service');
       const response = await userService.updateProgress(progressData);
-      
+
       if (response && response.success && response.data) {
         setUser((prevUser) => {
           if (!prevUser) return prevUser;
