@@ -14,12 +14,13 @@ const generateToken = (id) => {
  * @route   POST /api/auth/register
  * @access  Public
  */
+
 const register = async (req, res) => {
   try {
     const { fullName, rollNumber, email, department, year, password } = req.body;
 
     // Check if user exists by email or roll number
-    const userExists = await User.findOne({ 
+    const userExists = await User.findOne({
       $or: [{ email }, { rollNumber: rollNumber.toUpperCase() }]
     });
 
@@ -134,7 +135,7 @@ const getMe = async (req, res) => {
   try {
     // req.user is populated by the protect middleware
     const user = await User.findById(req.user.id);
-    
+
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -147,6 +148,8 @@ const getMe = async (req, res) => {
       user,
     });
   } catch (error) {
+    console.error('REGISTER ERROR:', error);
+
     res.status(500).json({
       success: false,
       message: 'Server Error while fetching profile',
